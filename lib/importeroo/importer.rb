@@ -8,8 +8,6 @@ module Importeroo
 
     def import!
       ActiveRecord::Base.transaction do
-        ActiveRecord::Base.connection.execute("DELETE FROM #{klass.table_name}")
-
         (2..data.last_row).each do |row_num|
           import_row! data.row(row_num)
         end
